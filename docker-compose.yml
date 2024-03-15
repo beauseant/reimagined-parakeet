@@ -1,0 +1,23 @@
+#docker network create -d bridge ml4ds_net --subnet 10.50.0.0/20 --attachable 
+
+version: "3.2"
+
+networks:
+  web-net:
+    name: ml4ds_net
+    external: true
+
+services:
+  web:
+    image: php:8.0-apache
+    ports:
+      - "80:80"
+    networks:
+      - web-net       
+    volumes:
+        - ./app:/var/www/html  
+
+volumes:
+  app:
+
+
