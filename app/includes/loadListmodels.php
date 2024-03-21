@@ -41,21 +41,25 @@
     <body>    
     <?php
 
-                        $data = shell_exec ('/usr/bin/python3.9 /var/www/html/assets/data/lanzar.py 2>&1');
-                        $data = json_decode ( $data, true);
 
 
-                        $data = $data['people'];
+                        $data = shell_exec ('/usr/bin/python3.9 /var/www/html/topicmodeler/src/topicmodeling/manageModels.py --listTMmodels  --path_TMmodels /data/TMmodels/ 2>&1');
+                        $data = json_decode ( $data, true);                        
+
+
+                        $listkeys = array_keys(reset ($data));
+
                         
                         $table = '
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>                                    
                                 ';
-                        $listkeys = array_keys ($data[0]);
                         foreach ($listkeys as $value) {
                             $table = $table . '<th scope="col">' . $value . '</th>';
                         }
+
+
 
                         $table = $table . '
                                 </tr>

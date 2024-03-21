@@ -10,7 +10,7 @@
 
           $(document).ready(function(){
               $.ajax({
-                  url: 'includes/loaddemo1.php',
+                  url: 'includes/loadListmodels.php',
                   type: 'GET',
                   dataType: 'html',
                   success: function(data) {
@@ -57,8 +57,6 @@
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container">
-      <button>Get External Content</button>
-
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div id="loadercont">

@@ -89,12 +89,12 @@
       <div class="container">
 
         <div class="row">
-          <a href="demo1.php">
+          <a href="listmodels.php">
             <div class="col-lg-4 col-md-6">
               <div class="icon-box" data-aos="fade-up">
                 <div class="icon"><i class="bi bi-briefcase"></i></div>
                 <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                <a href="demo1.php">Go</a>
+                <a href="listmodels.php">Listar modelos</a>
                 <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>                
               </div>
             </div>
