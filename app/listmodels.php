@@ -27,6 +27,7 @@
               });
           });
 
+
 </script>
 
 
@@ -72,7 +73,6 @@
       <div>
     </section><!-- End Services Section -->
 
-   
 
   </main><!-- End #main -->
   <?php include 'includes/footer.php';?>

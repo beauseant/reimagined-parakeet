@@ -9,32 +9,7 @@
 
                 $('#loader2').hide();
                 $('#loadercont2').hide();
-                $('#shownumber').hide();
-
-                $('.linkdata').on('click', function(event) {
-                        event.preventDefault();
-                        var val = $(this).attr('href');
-
-                        $('#loader2').show();  
-                        $('#loadercont2').show();  
-                        $('#shownumber').show();
-                        alert ("----");
-
-                        $.ajax({
-                                url: 'includes/loaddemo2.php',
-                                type: 'POST',
-                                data: {data:val},
-                                success: function(data) {
-                                    $('#shownumber').html(data);
-                                },
-                                error: function() {
-                                    alert("Something went wrong!");
-                                }
-                        });
-                        $('#loader2').hide();
-                        $('#loadercont2').hide();
-                        $('#shownumber').show();
-                });
+                $('#shownumber').hide();                
             });
         </script>
     </head>
@@ -43,7 +18,7 @@
 
 
 
-                        $data = shell_exec ('/usr/bin/python3.9 /var/www/html/topicmodeler/src/topicmodeling/manageModels.py --listTMmodels  --path_TMmodels /data/TMmodels/ 2>&1');
+                        $data = shell_exec ('/usr/bin/python3.9 /var/www/html/topicmodeler/src/topicmodeling/manageModels.py --listTMmodels --path_TMmodels /export/usuarios_ml4ds/lbartolome/Repos/intelcomp_repos/topicmodeler/prueba/TMmodels 2>&1');
                         $data = json_decode ( $data, true);                        
 
 
@@ -69,13 +44,20 @@
                         foreach ($data as $value) {
                             $table = $table . '<tr>';
                             foreach ($listkeys as $key){
-                                if ($key == 'number') {
-                                    $table = $table . '<td><a class="linkdata" href="'. $value[$key] . '">' . $value[$key] . '</a></td>';
+                                if ($key == 'TrDtSet') {
+                                    $lastNCharacters = substr($value[$key], -20);
+                                    $table = $table . '<td>' . $lastNCharacters . '</td>';
                                 } else {
                                     $table = $table . '<td>' . $value[$key] . '</td>';
-                                }
-                                
-                            }                       
+                                }                                
+                            } 
+                            $form = '<form action="trainModel.php" method="post">
+                                        <input type="hidden" id="model" name="model" value="'. $value['TrDtSet']  .'">
+                                        <a href="#" onclick="this.parentNode.submit();"> Entrenar</a>
+                                    </form';
+                            
+                            
+                            $table = $table . '<td>'. $form. '</td>';
                             $table = $table . '</tr>';
                         }
                         
@@ -85,13 +67,8 @@
 
                         echo $table;
 
-    ?>
-                <div id="loadercont2">
-                    <div id="loader2"><p>hola</p></div>
-                </div>
 
-                <div style="display:none;" id="shownumber" class="animate-bottom">
-                    <h2>Loading data!</h2>
-                </div>
+    ?>
+                
     </body>
 </html>

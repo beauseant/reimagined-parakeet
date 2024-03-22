@@ -12,12 +12,11 @@ services:
   web:
     image: phppython
     ports:
-      - "80:80"
+      - "4080:80"
     networks:
       - web-net       
     volumes:
         - ./app:/var/www/html  
-        - /home/sblanco/Documents/Trabajo/RepositorioGit/data:/data/
         - /export/usuarios_ml4ds/lbartolome/:/export/usuarios_ml4ds/lbartolome/
 
 volumes:
